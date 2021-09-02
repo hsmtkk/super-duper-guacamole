@@ -1,0 +1,39 @@
+[package]
+name = "ox"
+version = "0.2.7"
+authors = ["Curlpipe <11898833+curlpipe@users.noreply.github.com>"]
+edition = "2018"
+description = "A Rust powered text editor."
+homepage = "https://github.com/curlpipe/ox"
+repository = "https://github.com/curlpipe/ox"
+readme = "README.md"
+include = ["src/*.rs", "Cargo.toml"]
+categories = ["text-editors"]
+keywords = ["text-editor", "editor", "terminal", "tui"]
+license = "GPL-2.0"
+
+[profile.release]
+lto = true
+panic = "abort"
+codegen-units = 1
+
+[dependencies]
+unicode-segmentation = "1.6.0"
+unicode-width = "0.1.8"
+clap = "2.33.3"
+shellexpand = "2.0.0"
+ron = "0.6.2"
+serde = "1.0.117"
+regex = "1.4.2"
+directories = "3.0.1"
+crossterm = "0.18.2"
+term = "0.6.1"
+
+[package.metadata.rpm]
+package = "ox"
+
+[package.metadata.rpm.cargo]
+buildflags = ["--release"]
+
+[package.metadata.rpm.targets]
+ox = { path = "/usr/bin/ox" }
